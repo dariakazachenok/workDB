@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using workDB;
 
 namespace EFGetStarted.ConsoleApp.ExistingDb
@@ -19,6 +20,11 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
                 {
                     Console.WriteLine(" - {0}", blog.Url);
                 }
+
+                               var groups = db.Blog.GroupBy(b=>b.BlogId)
+                                  .Select(b => new { Count = b.Count()});
+                foreach (var b in groups)
+                    Console.WriteLine(" quality blogs in database: {0}, BlogId: {1}", b.Count, BlogId);
             }
         }
     }
