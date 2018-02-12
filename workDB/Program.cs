@@ -27,8 +27,8 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
                 var blogesCount = db.Blog.Where(b => b.Post.Count() < 1).ToList().Count();
                 Console.WriteLine(" Quality blogs in database where quality post < 1 : {0}", blogesCount);
 
-                var blogesNames = db.Blog.Where(b => b.Post.Count() < 1).Select(u => u.Url).ToList<string>();
-                Console.WriteLine("Blogs in database where quality post < 1 : {0}", String.Join(",",blogesNames));
+                var blogesNames = db.Blog.Where(b => b.Post.Count() == 0).Select(u => u.Url).ToList<string>();
+                Console.WriteLine("Blogs in database where quality post == 0 : {0}", String.Join(",",blogesNames));
 
             }
         }
