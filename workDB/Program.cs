@@ -31,10 +31,11 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
                 var blogesNames = db.Blog.Where(b => b.Post.Count() == 0).Select(u => u.Url).ToList<string>();
                 Console.WriteLine("Blogs in database where quality post == 0 : {0}", String.Join(",",blogesNames));
 
+                Console.WriteLine("Sorting:");
                 var sortUrl = db.Blog.OrderBy(u => u.Url);
                 foreach (var u in sortUrl)
                 {
-                    Console.WriteLine ("Sorting :{0}", u.Url);
+                    Console.WriteLine ("- :{0}", u.Url);
                 }
             }
         }
