@@ -15,6 +15,9 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
                 var count = db.SaveChanges();
                 Console.WriteLine("{0} records saved to database", count); */
 
+                var a = db.Blog.Count();
+                var d = db.Blog.Where(x => x.Post.Count() > 0).ToArray();
+                
                 Console.WriteLine();
                 Console.WriteLine("All blogs in database:");
                 foreach (var blog in db.Blog)
@@ -28,7 +31,7 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
                 var blogesCount = db.Blog.Where(b => b.Post.Count() < 1).ToList().Count();
                 Console.WriteLine(" Quality blogs in database where quality post < 1 : {0}", blogesCount);
 
-                var blogesNames = db.Blog.Where(b => b.Post.Count() == 0).Select(u => u.Url).ToList<string>();
+                var blogesNames = db.Blog.Where(b => b.Post.Count() == 0).Select(u => u.Url).ToList();
                 Console.WriteLine("Blogs in database where quality post == 0 : {0}", String.Join(",",blogesNames));
 
                 Console.WriteLine("Sorting:");
@@ -37,6 +40,8 @@ namespace EFGetStarted.ConsoleApp.ExistingDb
                 {
                     Console.WriteLine ("- :{0}", u.Url);
                 }
+
+              
             }
         }
     }
